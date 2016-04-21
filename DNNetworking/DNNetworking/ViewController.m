@@ -47,6 +47,20 @@
     }];
 }
 
+- (void)upImage {
+    UIImage * upImage = nil;//要上传的图片
+    NSDictionary *dic = @{
+                            @"token":@"用户的token"
+                          };
+    [DNNetworking postWithURLString:@"上传链接" parameters:dic image:upImage progress:^(NSProgress *progress) {
+        NSLog(@"上传图片的进度:%@",progress.localizedDescription);
+    } success:^(id obj) {
+        NSLog(@"post返回的到的信息:%@",obj);
+    } failure:^(NSError *error) {
+        NSLog(@"post返回的错误信息:%@",error);
+    }];
+}
+
 - (void)downloadImage {
     [DNNetworking downloadFileWithURLString:IMAGEURL progress:^(NSProgress *progress) {
         NSLog(@"下载图片的进度:%@",progress.localizedDescription);
